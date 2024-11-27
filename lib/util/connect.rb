@@ -69,7 +69,7 @@ module Culqi
     begin
       body_result = result.body
     rescue Encoding::UndefinedConversionError
-      body_result = result.body.force_encoding('ISO-8859-1').encode('UTF-8')
+      body_result = result.body.force_encoding('UTF-8')
     end
 
     return body_result, result.status
