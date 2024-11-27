@@ -65,8 +65,13 @@ module Culqi
       raise ArgumentError, "Unsupported request type: #{type}"
     end
 
-    puts result.body
+    # puts result.body
+    begin
+      body_result = result.body
+    rescue Encoding::UndefinedConversionError
+      body_result = result.body.force_encoding('UTF-8')
+    end
 
-    return result.body, result.status
+    return body_result, result.status
   end
 end
